@@ -15,7 +15,7 @@ ENV NB_PYTHON_VER=3.5
 
 RUN yum -y install epel-release
 
-RUN yum install -y curl wget java java-headless bzip2 gnupg2 sqlite3 nss_wrapper \
+RUN yum install -y curl wget java-headless bzip2 gnupg2 sqlite3 nss_wrapper \
     && cd /tmp \
     && wget -q https://repo.continuum.io/miniconda/Miniconda3-4.2.12-Linux-x86_64.sh \
     && echo d0c7c71cc5659e54ab51f2005a8d96f3 Miniconda3-4.2.12-Linux-x86_64.sh | md5sum -c - \
@@ -92,7 +92,8 @@ RUN \
     tar xzf v${JUPYTER_SCALA_VERSION}.tar.gz && \
     mv jupyter-scala-${JUPYTER_SCALA_VERSION} jupyter-scala && \
     rm v${JUPYTER_SCALA_VERSION}.tar.gz && \
-    cd jupyter-scala && ./jupyter-scala
+    cd jupyter-scala && ./jupyter-scala && \
+    cd $HOME && rm -rf jupyter-scala
 
 RUN chmod a+rwx $HOME && chmod -R a+rwx $HOME/.local $HOME/.coursier
 
