@@ -40,5 +40,15 @@ java.nio.file.Files.list(java.nio.file.Paths.get("/opt/spark/jars")).toArray.map
 import $ivy.`sh.almond::ammonite-spark:0.1.1`
 ```
 
+An example of connecting to a spark cluster using the `AmmoniteSparkSession` wrapper:
+```scala
+import org.apache.spark.sql._
+val spark = {
+    AmmoniteSparkSession.builder()
+      .master("local[*]")
+      .getOrCreate()
+  }
+```
+
 Other examples of how to use this kernel can be found
 [here](https://github.com/jupyter-scala/jupyter-scala).
